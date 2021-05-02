@@ -1,0 +1,21 @@
+version: "3"
+networks:
+  myNetwork:
+    driver: bridge
+services:
+  mymongodb:
+    image: mongo:latest
+    container_name: mymongodb
+    ports:
+      - 27017:27017
+    networks:
+      - myNetwork
+  spring-boot:
+    image: spring-boot:1.0
+    container_name: spring-boot
+    build:
+      context: .
+    ports:
+    - 8080:8080
+    networks:
+      - myNetwork
