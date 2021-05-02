@@ -1,7 +1,7 @@
-#Mutantes
-##Ejercicio de programación - Mercado libre
+# Mutantes
+## Ejercicio de programación - Mercado libre
 
-###Implementación y tecnologías usadas
+### Implementación y tecnologías usadas
   - SpringBoot
   - MongoDB
   - Docker
@@ -10,8 +10,8 @@
   - Flapdoodle
   - Swagger
 
-##Setup
-###Instrucciones
+## Setup
+### Instrucciones
 Para compilar y ejecutar el proyecto es necesario contar con la version 1.8 de la JDK, Maven para la gestión de las dependencias y Docker para deployar la aplicación.
 También es necesario contar con una instancia de MongoDB en caso de querer ejecutarlo localmente, se utilizan los datos de conexión por default de MongoDB.
 Una vez levantada la aplicación se puede realizar invocaciones a la API.
@@ -19,16 +19,16 @@ Para iniciar la aplicación debe clonarse el repo y ejecutar las siguientes inst
 - mvn clean package
 - docker compose up
 
-###Uso
+### Uso
 Para iniciar la aplicación, asegúrese de cumplir con las instrucciones anteriores y correr la aplicación en http://localhost:8080 y
 si se quisiera levantar la app localmente se la podría ejecutar desde un IDE o con el siguiente comando 
 
 `mvn exec:java -Dexec.mainClass="com.example.xmen.XMenApplication"` 
 teniendo la instancia de MongoDB levantada en el puerto por default.
 
-##Servicios
+## Servicios
 Una vez iniciada la app, los servicios de la misma se podrán ver desde http://localhost:8080/swagger-ui.html o también podrá encontrarlos más abajo con algunos ejemplos más de error:
-####Es mutante
+#### Es mutante
 
 Request: 
 - POST http://localhost:8080/mutants/
@@ -80,7 +80,7 @@ Response:
   400 Bad Request
 ```
 
-####Estadísticas
+#### Estadísticas
 
 Request: 
 - GET http://localhost:8080/stats
@@ -95,7 +95,7 @@ Response: 200 (application/json)
 }
 ```
 
-###Consultas en la MongoDB
+### Consultas en la MongoDB
 Nombre de la db = mutantResult
 
 Nombre de la colección: dna_result
@@ -110,7 +110,7 @@ Ejecutar los siguiente comandos:
 `db.dna_result.find().pretty()`
 
 
-###Tests
+### Tests
 
 Se realizaron tests unitarios y de integración.
 Para poder probar los componentes de base de datos utilicé una base de datos MongoDB embebida, esta se levanta durante 
@@ -118,7 +118,7 @@ el test y luego se destruye.
 
 ![coverage](./doc/images/coverage.png)
 
-##Examen MercadoLibre
+## Examen MercadoLibre
 Magneto quiere reclutar la mayor cantidad de mutantes para poder luchar contra los X-Men.
 Te ha contratado a ti para que desarrolles un proyecto que detecte si un humano es mutante basándose en su secuencia de ADN.
 Para eso te ha pedido crear un programa con un método o función con la siguiente firma (En alguno de los siguiente lenguajes: Java / Golang / C-C++ / Javascript (node) / Python / Ruby):
@@ -157,12 +157,12 @@ T C A C T G
 Sabrás si un humano es mutante, si encuentras más de una secuencia de cuatro letras iguales​, de forma oblicua, horizontal o vertical. Ejemplo (Caso mutante):
 String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
 En este caso el llamado a la función isMutant(dna) devuelve “true”. Desarrolla el algoritmo de la manera más eficiente posible. Desafíos:
-###Nivel 1:
+### Nivel 1:
 Programa (en cualquier lenguaje de programación) que cumpla con el método pedido por Magneto.
-###Nivel 2:
+### Nivel 2:
 Crear una API REST, hostear esa API en un cloud computing libre (Google App Engine, Amazon AWS, etc), crear el servicio “/mutant/” en donde se pueda detectar si un humano es mutante enviando la secuencia de ADN mediante un HTTP POST con un Json el cual tenga el siguiente formato:
 POST → /mutant/ { “dna”:["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"] }
 En caso de verificar un mutante, debería devolver un HTTP 200-OK, en caso contrario un 403-Forbidden
-###Nivel 3:
+### Nivel 3:
 Anexar una base de datos, la cual guarde los ADN’s verificados con la API. Solo 1 registro por ADN.
 Exponer un servicio extra “/stats” que devuelva un Json con las estadísticas de las verificaciones de ADN: {"count_mutant_dna" : 40, "count_human_dna" : 100, "ratio" : 0.4 } Tener en cuenta que la API puede recibir fluctuaciones agresivas de tráfico (Entre 100 y 1 millón de peticiones por segundo). Test-Automáticos, Code coverage > 80%.
